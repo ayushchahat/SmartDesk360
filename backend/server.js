@@ -1,24 +1,26 @@
-import express from 'express';
-import dotenv from 'dotenv';
-import connectDB from './config/db.js';
-import inventoryRoutes from './routes/inventoryRoutes.js';
-import billingRoutes from './routes/billingRoutes.js';
-import returnRoutes from './routes/returnRoutes.js';
-import { errorHandler } from './middleware/errorMiddleware.js';
-
-dotenv.config();
-connectDB();
+require('dotenv').config();
+const express = require('express');
+const connectDB = require('./config/db');
+const scheduleSync = require('./utils/syncScheduler');
 
 const app = express();
+
+// Middleware
 app.use(express.json());
 
-// API Routes
-app.use('/api/inventory', inventoryRoutes);
-app.use('/api/billing', billingRoutes);
-app.use('/api/returns', returnRoutes);
+// Connect to DB
+connectDB();
 
-// Error Middleware
-app.use(errorHandler);
+// Schedule daily sync
+scheduleSync();
+
+// Routes
+app.use('/api/inventory', require('./routes/inventoryRoutes'));
+app.use('/api/billing', require('./routes/billingRoutes'));
+app.use('/api/returns', require('./routes/returnRoutes'));
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
