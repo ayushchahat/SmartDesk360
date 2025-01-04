@@ -1,8 +1,7 @@
-import express from 'express';
-import { createBill } from '../controllers/billingController.js';
-
+const express = require('express');
+const { createBill } = require('../controllers/billingController');
 const router = express.Router();
 
 router.post('/create', createBill);
 
-export default router;
+module.exports = router;
