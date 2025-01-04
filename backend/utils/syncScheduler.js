@@ -1,6 +1,7 @@
-const cron = require('node-cron');
-const axios = require('axios');
-const Inventory = require('../models/Inventory'); // Correct path
+// syncScheduler.js
+import Inventory from '../models/Inventory.js';  // Default import
+import cron from 'node-cron';
+import axios from 'axios';
 
 const syncWithCloud = async () => {
   try {
@@ -12,9 +13,8 @@ const syncWithCloud = async () => {
   }
 };
 
-// Schedule sync to run every day at midnight
 const scheduleSync = () => {
   cron.schedule('0 0 * * *', syncWithCloud);
 };
 
-module.exports = scheduleSync;
+export default scheduleSync;
