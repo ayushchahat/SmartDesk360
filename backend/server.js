@@ -1,7 +1,11 @@
-require('dotenv').config();
-const express = require('express');
-const connectDB = require('./config/db');
-const scheduleSync = require('./utils/syncScheduler');
+// Dynamically load CommonJS modules
+const dotenv = await import('dotenv');
+const express = await import('express');
+const { default: connectDB } = await import('./config/db.js');
+const { default: scheduleSync } = await import('./utils/syncScheduler.js');
+
+// Load environment variables
+dotenv.config();
 
 const app = express();
 
@@ -14,10 +18,15 @@ connectDB();
 // Schedule daily sync
 scheduleSync();
 
-// Routes
-app.use('/api/inventory', require('./routes/inventoryRoutes'));
-app.use('/api/billing', require('./routes/billingRoutes'));
-app.use('/api/returns', require('./routes/returnRoutes'));
+// Dynamically import routes
+const inventoryRoutes = await import('./routes/inventoryRoutes.js');
+const billingRoutes = await import('./routes/billingRoutes.js');
+const returnRoutes = await import('./routes/returnRoutes.js');
+
+// Use routes
+app.use('/api/inventory', inventoryRoutes.default);
+app.use('/api/billing', billingRoutes.default);
+app.use('/api/returns', returnRoutes.default);
 
 const PORT = process.env.PORT || 5000;
 
