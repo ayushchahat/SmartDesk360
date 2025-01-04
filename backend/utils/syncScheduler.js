@@ -1,6 +1,6 @@
 const cron = require('node-cron');
 const axios = require('axios');
-const Inventory = require('../models/Inventory'); // Example inventory model
+const Inventory = require('../models/Inventory'); // Correct path
 
 const syncWithCloud = async () => {
   try {
