@@ -1,7 +1,11 @@
-const express = require('express');
-const { createBill } = require('../controllers/billingController');
+import express from 'express';
+import { createBill } from '../controllers/billingController.js';
+import asyncHandler from '../middleware/asyncHandler.js';
+import { protect } from '../middleware/authMiddleware.js';
+
 const router = express.Router();
 
-router.post('/create', createBill);
+// Create a bill
+router.post('/create', protect, asyncHandler(createBill));
 
-module.exports = router;
+export default router;

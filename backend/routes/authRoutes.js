@@ -1,12 +1,16 @@
-const express = require('express');
-const User = require('../models/User');
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs');
+import express from 'express';
+import User from '../models/User.js';
+import jwt from 'jsonwebtoken';
+import bcrypt from 'bcryptjs';
+import asyncHandler from '../middleware/asyncHandler.js';
+
 const router = express.Router();
 
+// Helper function to generate a JWT token
 const generateToken = (id) => jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '30d' });
 
-router.post('/register', async (req, res) => {
+// Register a new user
+router.post('/register', asyncHandler(async (req, res) => {
   const { name, email, password } = req.body;
   const userExists = await User.findOne({ email });
   if (userExists) return res.status(400).json({ message: 'User already exists' });
@@ -17,9 +21,10 @@ router.post('/register', async (req, res) => {
   } else {
     res.status(400).json({ message: 'Invalid user data' });
   }
-});
+}));
 
-router.post('/login', async (req, res) => {
+// Login user
+router.post('/login', asyncHandler(async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email });
   if (user && (await bcrypt.compare(password, user.password))) {
@@ -27,6 +32,6 @@ router.post('/login', async (req, res) => {
   } else {
     res.status(401).json({ message: 'Invalid credentials' });
   }
-});
+}));
 
-module.exports = router;
+export default router;

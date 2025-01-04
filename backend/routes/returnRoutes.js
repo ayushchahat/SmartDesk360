@@ -1,7 +1,11 @@
-const express = require('express');
-const { processReturn } = require('../controllers/returnController');
+import express from 'express';
+import { processReturn } from '../controllers/returnController.js';
+import asyncHandler from '../middleware/asyncHandler.js';
+import { protect } from '../middleware/authMiddleware.js';
+
 const router = express.Router();
 
-router.post('/process', processReturn);
+// Process a product return
+router.post('/process', protect, asyncHandler(processReturn));
 
-module.exports = router;
+export default router;
