@@ -1,8 +1,8 @@
-import express from 'express';
-import User from '../models/User.js';
-import jwt from 'jsonwebtoken';
-import bcrypt from 'bcryptjs';
-import asyncHandler from '../middleware/asyncHandler.js';
+const express = require('express');
+const User = require('../models/User');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
+const asyncHandler = require('../middleware/asyncHandler');
 
 const router = express.Router();
 
@@ -34,4 +34,4 @@ router.post('/login', asyncHandler(async (req, res) => {
   }
 }));
 
-export default router;
+module.exports = router;

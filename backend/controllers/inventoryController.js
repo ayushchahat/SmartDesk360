@@ -1,5 +1,5 @@
-import Inventory from '../models/Inventory.js';
-import { validationResult } from 'express-validator'; // Optional for better validation handling
+const Inventory = require('../models/Inventory');
+const { validationResult } = require('express-validator'); // Optional for better validation handling
 
 // Logic to create new inventory
 const addInventory = async (req, res) => {
@@ -42,4 +42,4 @@ const getExpiringProducts = async (req, res) => {
     }
 };
 
-export { addInventory, getExpiringProducts };
+module.exports = { addInventory, getExpiringProducts };

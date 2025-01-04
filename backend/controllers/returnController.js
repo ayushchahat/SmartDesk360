@@ -1,5 +1,5 @@
-import Inventory from '../models/Inventory.js';
-import Return from '../models/returnModel.js';
+const Inventory = require('../models/Inventory');
+const Return = require('../models/returnModel');
 
 const processReturn = async (req, res) => {
     const { productId, quantity, discount = 0, actualMoneyReceived } = req.body;
@@ -49,4 +49,4 @@ const processReturn = async (req, res) => {
     }
 };
 
-export { processReturn };
+module.exports = { processReturn };

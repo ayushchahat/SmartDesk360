@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
 const returnSchema = mongoose.Schema(
   {
@@ -15,4 +15,4 @@ const returnSchema = mongoose.Schema(
 );
 
 const Return = mongoose.model('Return', returnSchema);
-export default Return;
+module.exports = Return;

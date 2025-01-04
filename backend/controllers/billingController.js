@@ -1,5 +1,5 @@
-import Inventory from '../models/Inventory.js';
-import Billing from '../models/billingModel.js';
+const Inventory = require('../models/Inventory');
+const Billing = require('../models/billingModel');
 
 const createBill = async (req, res) => {
     const { productId, quantity, price } = req.body;
@@ -38,4 +38,4 @@ const createBill = async (req, res) => {
     }
 };
 
-export { createBill };
+module.exports = { createBill };

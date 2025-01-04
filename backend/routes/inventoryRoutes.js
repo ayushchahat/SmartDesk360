@@ -1,7 +1,7 @@
-import express from 'express';
-import { addInventory, getExpiringProducts } from '../controllers/inventoryController.js';
-import asyncHandler from '../middleware/asyncHandler.js';
-import { protect } from '../middleware/authMiddleware.js';
+const express = require('express');
+const { addInventory, getExpiringProducts } = require('../controllers/inventoryController');
+const asyncHandler = require('../middleware/asyncHandler');
+const { protect } = require('../middleware/authMiddleware');
 
 const router = express.Router();
 
@@ -11,4 +11,4 @@ router.post('/add', protect, asyncHandler(addInventory));
 // Get expiring products
 router.get('/expiring', protect, asyncHandler(getExpiringProducts));
 
-export default router;
+module.exports = router;
