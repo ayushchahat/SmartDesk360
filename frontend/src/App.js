@@ -5,6 +5,8 @@ import InventoryPage from './pages/InventoryPage';
 import BillingPage from './pages/BillingPage';
 import ReturnPage from './pages/ReturnPage';
 import Navbar from './components/Layout/Navbar';
+import RegisterPage from './pages/RegisterPage';
+import LoginPage from './pages/LoginPage';
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
         <Route path="/inventory" element={<InventoryPage />} />
         <Route path="/billing" element={<BillingPage />} />
         <Route path="/returns" element={<ReturnPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
       </Routes>
     </Router>
   );
