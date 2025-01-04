@@ -11,5 +11,4 @@ const inventorySchema = new mongoose.Schema({
   expiryDate: { type: Date, required: true },
 }, { timestamps: true });
 
-const Inventory = mongoose.model('Inventory', inventorySchema);
-module.exports = Inventory;
+module.exports = mongoose.model('Inventory', inventorySchema);

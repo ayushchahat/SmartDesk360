@@ -1,4 +1,4 @@
-import Inventory from '../models/inventoryModel.js';
+import Inventory from '../models/Inventory.js';
 import Billing from '../models/billingModel.js';
 
 const createBill = async (req, res) => {

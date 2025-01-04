@@ -1,4 +1,4 @@
-import Inventory from '../models/inventoryModel.js';
+import Inventory from '../models/Inventory.js';
 import Return from '../models/returnModel.js';
 
 const processReturn = async (req, res) => {
