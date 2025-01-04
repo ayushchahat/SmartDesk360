@@ -1,14 +1,17 @@
-const mongoose = require('mongoose');
+// Inventory.js
+import mongoose from 'mongoose';
 
 const inventorySchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  specifics: { type: String },
-  dateOfPurchase: { type: Date, required: true },
-  quantity: { type: Number, required: true },
-  purchasePrice: { type: Number, required: true },
-  discount: { type: Number },
-  mrp: { type: Number, required: true },
-  expiryDate: { type: Date, required: true },
-}, { timestamps: true });
+  name: String,
+  specifics: String,
+  dateOfPurchase: Date,
+  quantity: Number,
+  purchasePrice: Number,
+  discount: Number,
+  mrp: Number,
+  expiryDate: Date,
+});
 
-module.exports = mongoose.model('Inventory', inventorySchema);
+const Inventory = mongoose.model('Inventory', inventorySchema);
+
+export default Inventory;  // Default export
