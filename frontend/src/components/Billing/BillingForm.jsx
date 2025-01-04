@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import axios from '../../utils/api';
-import './form.css';
+import axios from 'axios';
+import '../../styles/form.css';
 
 const BillingForm = () => {
   const [products, setProducts] = useState([]);
